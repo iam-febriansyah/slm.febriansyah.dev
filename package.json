@@ -1,0 +1,33 @@
+{
+  "name": "mini-erp-invoicing",
+  "version": "1.0.0",
+  "description": "Mini ERP Invoicing System - Modular Monolith",
+  "private": true,
+  "packageManager": "npm@10.0.0",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "turbo build",
+    "dev": "turbo dev",
+    "lint": "turbo lint",
+    "typecheck": "turbo typecheck",
+    "format": "prettier --write \"**/*.{ts,tsx,json,md}\"",
+    "db:push": "npx dotenv-cli -- npx prisma db push --schema=apps/api/prisma/schema.prisma",
+    "db:migrate": "npx dotenv-cli -- npx prisma migrate dev --schema=apps/api/prisma/schema.prisma",
+    "db:studio": "npx dotenv-cli -- npx prisma studio --schema=apps/api/prisma/schema.prisma",
+    "db:seed": "npx dotenv-cli -- npx ts-node apps/api/prisma/seed.ts"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^7.0.0",
+    "@typescript-eslint/parser": "^7.0.0",
+    "eslint": "^8.0.0",
+    "prettier": "^3.0.0",
+    "turbo": "^2.0.0",
+    "typescript": "^5.4.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

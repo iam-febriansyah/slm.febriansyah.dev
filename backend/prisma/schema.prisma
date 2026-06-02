@@ -1,0 +1,145 @@
+// ============================================================
+// Mini ERP Invoicing System — Prisma Schema
+// Database: MySQL
+// ============================================================
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+// ── Enums ────────────────────────────────────────────────────
+
+enum Role {
+  ADMIN
+  USER
+}
+
+enum InvoiceStatus {
+  DRAFT
+  UNPAID
+  PAID
+  CANCELLED
+}
+
+// ── User ─────────────────────────────────────────────────────
+
+model User {
+  id        String    @id @default(uuid()) @db.VarChar(36)
+  email     String    @unique @db.VarChar(255)
+  password  String    @db.VarChar(255)
+  name      String    @db.VarChar(255)
+  role      Role      @default(USER)
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @updatedAt @map("updated_at")
+  deletedAt DateTime? @map("deleted_at")
+
+  invoices Invoice[]
+
+  @@index([deletedAt])
+  @@map("users")
+}
+
+// ── Customer ─────────────────────────────────────────────────
+
+model Customer {
+  id        String    @id @default(uuid()) @db.VarChar(36)
+  name      String    @db.VarChar(255)
+  email     String?   @unique @db.VarChar(255)
+  phone     String?   @db.VarChar(50)
+  address   String?   @db.Text
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @updatedAt @map("updated_at")
+  deletedAt DateTime? @map("deleted_at")
+
+  invoices Invoice[]
+
+  @@index([deletedAt])
+  @@map("customers")
+}
+
+// ── Item (Master Catalog) ────────────────────────────────────
+
+model Item {
+  id          String    @id @default(uuid()) @db.VarChar(36)
+  name        String    @db.VarChar(255)
+  description String?   @db.VarChar(500)
+  unitPrice   Decimal   @map("unit_price") @db.Decimal(15, 2)
+  unit        String?   @db.VarChar(50)
+  sku         String?   @unique @db.VarChar(100)
+  isActive    Boolean   @default(true) @map("is_active")
+  createdAt   DateTime  @default(now()) @map("created_at")
+  updatedAt   DateTime  @updatedAt @map("updated_at")
+  deletedAt   DateTime? @map("deleted_at")
+
+  invoiceItems InvoiceItem[]
+
+  @@index([isActive])
+  @@index([deletedAt])
+  @@map("items")
+}
+
+// ── Invoice ──────────────────────────────────────────────────
+
+model Invoice {
+  id              String        @id @default(uuid()) @db.VarChar(36)
+  invoiceNumber   String        @unique @map("invoice_number") @db.VarChar(50)
+  status          InvoiceStatus @default(DRAFT)
+  issueDate       DateTime      @default(now()) @map("issue_date")
+  dueDate         DateTime      @map("due_date")
+
+  // ── Financial fields ──
+  subtotal        Decimal       @default(0) @db.Decimal(15, 2)
+  discountPercent Decimal       @default(0) @map("discount_percent") @db.Decimal(5, 2)
+  discountAmount  Decimal       @default(0) @map("discount_amount") @db.Decimal(15, 2)
+  taxPercent      Decimal       @default(0) @map("tax_percent") @db.Decimal(5, 2)
+  taxAmount       Decimal       @default(0) @map("tax_amount") @db.Decimal(15, 2)
+  totalAmount     Decimal       @default(0) @map("total_amount") @db.Decimal(15, 2)
+
+  notes           String?       @db.Text
+  createdAt       DateTime      @default(now()) @map("created_at")
+  updatedAt       DateTime      @updatedAt @map("updated_at")
+  deletedAt       DateTime?     @map("deleted_at")
+
+  // ── Foreign Keys ──
+  customerId String @map("customer_id") @db.VarChar(36)
+  userId     String @map("user_id") @db.VarChar(36)
+
+  // ── Relations ──
+  customer Customer      @relation(fields: [customerId], references: [id], onDelete: Restrict)
+  user     User          @relation(fields: [userId], references: [id], onDelete: Restrict)
+  items    InvoiceItem[]
+
+  @@index([customerId])
+  @@index([userId])
+  @@index([status])
+  @@index([issueDate])
+  @@index([deletedAt])
+  @@map("invoices")
+}
+
+// ── InvoiceItem ──────────────────────────────────────────────
+
+model InvoiceItem {
+  id          String  @id @default(uuid()) @db.VarChar(36)
+  description String  @db.VarChar(500)
+  quantity    Int     @default(1)
+  unitPrice   Decimal @map("unit_price") @db.Decimal(15, 2)
+  totalPrice  Decimal @map("total_price") @db.Decimal(15, 2)
+
+  // ── Foreign Keys ──
+  invoiceId String  @map("invoice_id") @db.VarChar(36)
+  itemId    String? @map("item_id") @db.VarChar(36)
+
+  // ── Relations ──
+  invoice Invoice @relation(fields: [invoiceId], references: [id], onDelete: Cascade)
+  item    Item?   @relation(fields: [itemId], references: [id], onDelete: SetNull)
+
+  @@index([invoiceId])
+  @@index([itemId])
+  @@map("invoice_items")
+}
