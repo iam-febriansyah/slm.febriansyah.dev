@@ -1,12 +1,13 @@
-# Build stage - use slim image for better compatibility with native modules
-FROM node:18-slim AS builder
+# Build stage
+FROM node:18-alpine AS builder
 WORKDIR /app
 
-COPY package*.json ./
-RUN npm ci --legacy-peer-deps
+# Tambahkan libc6-compat yang dibutuhkan oleh native binding Tailwind (Oxide) di Alpine Linux
+RUN apk add --no-cache libc6-compat
 
-COPY . .
-RUN npm run build
+COPY package*.json ./
+# Gunakan npm install alih-alih npm ci untuk memaksa unduhan optional dependencies sesuai OS/Arsitektur saat ini
+RUN npm install --legacy-peer-deps
 
 COPY . .
 RUN npm run build
@@ -17,9 +18,10 @@ WORKDIR /app
 
 ENV NODE_ENV=production
 
-# Install only production dependencies
+RUN apk add --no-cache libc6-compat
+
 COPY package*.json ./
-RUN npm ci --only=production --legacy-peer-deps && \
+RUN npm install --omit=dev --legacy-peer-deps && \
     npm cache clean --force
 
 # Copy built application from builder stage
@@ -28,7 +30,7 @@ COPY --from=builder /app/public ./public
 COPY package*.json ./
 
 # Expose port
-EXPOSE 3000
+EXPOSE 3003
 
 # Health check
 HEALTHCHECK --interval=30s --timeout=3s --start-period=30s \
