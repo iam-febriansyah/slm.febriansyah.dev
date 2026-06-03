@@ -92,8 +92,8 @@ npm run dev
 
 ### 3. Login
 Navigate to `http://localhost:3003` and log in using the seeded test accounts:
-- **Admin**: `admin@example.com` / `admin123`
-- **User**: `user@example.com` / `user123`
+- **Admin**: `admin@sml.com` / `admin123`
+- **User**: `user@sml.com` / `user123`
 
 ---
 
