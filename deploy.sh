@@ -13,7 +13,7 @@ BLUE='\033[0;34m'
 NC='\033[0m' # No Color
 
 # Configuration
-PROJECT_NAME="erp-invoicing"
+PROJECT_NAME="sml-invoicing"
 COMPOSE_FILE="docker-compose.yml"
 ENV_FILE=".env"
 
@@ -58,19 +58,37 @@ check_docker_compose() {
     print_success "Docker Compose is installed"
 }
 
-# Check if .env file exists
+# Check if .env files exist in backend and frontend
 check_env_file() {
-    if [ ! -f "$ENV_FILE" ]; then
-        print_warning ".env file not found. Creating from .env.example..."
-        if [ -f ".env.example" ]; then
-            cp .env.example "$ENV_FILE"
-            print_success ".env file created. Please update with your configuration."
+    local has_error=false
+
+    if [ ! -f "backend/.env" ]; then
+        print_warning "backend/.env file not found."
+        if [ -f "backend/.env.example" ]; then
+            cp backend/.env.example backend/.env
+            print_success "backend/.env created from .env.example. Please update with your DATABASE_URL."
+            has_error=true
         else
-            print_error ".env.example file not found."
-            exit 1
+            print_error "backend/.env.example file not found."
+            has_error=true
         fi
     else
-        print_success ".env file exists"
+        print_success "backend/.env file exists"
+    fi
+
+    if [ ! -f "frontend/.env" ]; then
+        print_warning "frontend/.env file not found (optional)."
+        if [ -f "frontend/.env.example" ]; then
+            cp frontend/.env.example frontend/.env
+            print_info "frontend/.env created from .env.example"
+        fi
+    else
+        print_success "frontend/.env file exists"
+    fi
+
+    if [ "$has_error" = true ]; then
+        print_error "Please configure backend/.env with DATABASE_URL before deploying."
+        exit 1
     fi
 }
 
@@ -139,8 +157,8 @@ deploy() {
     sleep 10
     show_status
     print_success "Application deployed successfully"
-    print_info "Backend: http://localhost:4000"
-    print_info "Frontend: http://localhost:3000"
+    print_info "Backend: http://localhost:3004"
+    print_info "Frontend: http://localhost:3003"
 }
 
 # Restart services

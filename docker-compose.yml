@@ -6,7 +6,7 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    container_name: erp-backend
+    container_name: sml-backend
     restart: unless-stopped
     env_file:
       - ./backend/.env
@@ -16,7 +16,7 @@ services:
     ports:
       - "3004:3004"
     networks:
-      - erp-network
+      - sml-network
     volumes:
       - ./backend/prisma:/app/prisma
     healthcheck:
@@ -31,7 +31,7 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-    container_name: erp-frontend
+    container_name: sml-frontend
     restart: unless-stopped
     environment:
       NODE_ENV: production
@@ -41,7 +41,7 @@ services:
     depends_on:
       - backend
     networks:
-      - erp-network
+      - sml-network
     healthcheck:
       test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:3003"]
       interval: 30s
@@ -50,5 +50,5 @@ services:
       start_period: 40s
 
 networks:
-  erp-network:
+  sml-network:
     driver: bridge
