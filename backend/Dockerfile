@@ -2,6 +2,9 @@
 FROM node:18-alpine AS base
 WORKDIR /app
 
+# Install OpenSSL for Prisma
+RUN apk add --no-cache openssl libc6-compat
+
 # Dependencies stage
 FROM base AS dependencies
 COPY package*.json ./
