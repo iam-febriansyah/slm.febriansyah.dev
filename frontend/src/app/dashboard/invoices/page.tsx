@@ -113,20 +113,6 @@ export default function InvoicesPage() {
                             </a>
                           </Button>
 
-                          {/* Edit Button - only for DRAFT */}
-                          {inv.status === 'DRAFT' && (
-                            <Button
-                              size="sm"
-                              variant="ghost"
-                              className="cursor-pointer hover:bg-amber-50 hover:text-amber-600 transition-colors"
-                              asChild
-                            >
-                              <a href={`/dashboard/invoices/${inv.id}/edit`} title="Edit Invoice">
-                                <Edit size={16} />
-                              </a>
-                            </Button>
-                          )}
-
                           {/* Delete Button - only for DRAFT */}
                           {inv.status === 'DRAFT' && (
                             <Button
