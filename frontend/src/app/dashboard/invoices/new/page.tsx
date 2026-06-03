@@ -16,7 +16,7 @@ interface InvoiceItem {
   id: string;
   description: string;
   quantity: number;
-  unitPrice: number;
+  unit_price: number;
   itemId?: string;
 }
 
@@ -47,7 +47,7 @@ export default function CreateInvoicePage() {
   const [taxPercent, setTaxPercent] = useState(0);
   const [notes, setNotes] = useState('');
   const [invoiceItems, setInvoiceItems] = useState<InvoiceItem[]>([
-    { id: '1', description: '', quantity: 1, unitPrice: 0 },
+    { id: '1', description: '', quantity: 1, unit_price: 0 },
   ]);
 
   useEffect(() => {
@@ -73,7 +73,7 @@ export default function CreateInvoicePage() {
 
   const calculateTotals = () => {
     const subtotal = invoiceItems.reduce(
-      (sum, item) => sum + item.quantity * item.unitPrice,
+      (sum, item) => sum + item.quantity * item.unit_price,
       0
     );
     const discountAmount = subtotal * (discountPercent / 100);
@@ -92,7 +92,7 @@ export default function CreateInvoicePage() {
         id: Math.random().toString(),
         description: '',
         quantity: 1,
-        unitPrice: 0,
+        unit_price: 0,
       },
     ]);
   };
@@ -125,7 +125,7 @@ export default function CreateInvoicePage() {
 
     if (
       invoiceItems.some(
-        (item) => !item.description || item.quantity <= 0 || item.unitPrice < 0
+        (item) => !item.description || item.quantity <= 0 || item.unit_price < 0
       )
     ) {
       toast.error('Periksa kembali item invoice');
@@ -143,7 +143,7 @@ export default function CreateInvoicePage() {
         items: invoiceItems.map((item) => ({
           description: item.description,
           quantity: item.quantity,
-          unitPrice: item.unitPrice,
+          unit_price: item.unit_price,
           itemId: item.itemId,
         })),
       };
@@ -257,76 +257,76 @@ export default function CreateInvoicePage() {
           <CardContent className="pt-5">
             <div className="space-y-3 overflow-visible">
               <div className="overflow-x-auto">
-              <table className="w-full text-sm">
-                <thead>
-                  <tr className="bg-gray-50 border-b border-gray-200">
-                    <th className="px-3 py-3 text-left font-semibold text-gray-700">Deskripsi</th>
-                    <th className="px-3 py-3 text-center font-semibold text-gray-700 w-20">Qty</th>
-                    <th className="px-3 py-3 text-right font-semibold text-gray-700 w-32">Harga</th>
-                    <th className="px-3 py-3 text-right font-semibold text-gray-700 w-32">Total</th>
-                    <th className="px-3 py-3 w-10"></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {invoiceItems.map((item) => (
-                    <tr key={item.id} className="border-b border-gray-100 hover:bg-gray-50 transition-colors">
-                      <td className="px-3 py-3">
-                        <SearchableItemInput
-                          value={item.description}
-                          options={items}
-                          onSelect={(description, price, itemId) => {
-                            handleItemChange(item.id, 'description', description);
-                            handleItemChange(item.id, 'unitPrice', price);
-                            if (itemId) handleItemChange(item.id, 'itemId', itemId);
-                          }}
-                          onChange={(text) => {
-                            handleItemChange(item.id, 'description', text);
-                          }}
-                          pageSize={8}
-                        />
-                      </td>
-                      <td className="px-3 py-3">
-                        <input
-                          type="number"
-                          min="1"
-                          value={item.quantity}
-                          onChange={(e) =>
-                            handleItemChange(item.id, 'quantity', parseInt(e.target.value) || 1)
-                          }
-                          className="w-full px-2.5 py-1.5 border border-gray-300 rounded text-sm text-center bg-white focus:outline-none focus:ring-1 focus:ring-primary-500"
-                        />
-                      </td>
-                      <td className="px-3 py-3">
-                        <input
-                          type="number"
-                          min="0"
-                          step="0.01"
-                          value={item.unitPrice}
-                          onChange={(e) =>
-                            handleItemChange(item.id, 'unitPrice', parseFloat(e.target.value) || 0)
-                          }
-                          className="w-full px-2.5 py-1.5 border border-gray-300 rounded text-sm text-right bg-white focus:outline-none focus:ring-1 focus:ring-primary-500"
-                        />
-                      </td>
-                      <td className="px-3 py-3 text-right font-semibold text-gray-900">
-                        {formatCurrency(item.quantity * item.unitPrice)}
-                      </td>
-                      <td className="px-3 py-3 text-center">
-                        <button
-                          type="button"
-                          onClick={() => handleRemoveItem(item.id)}
-                          disabled={invoiceItems.length === 1}
-                          className="text-danger hover:bg-red-50 p-1.5 rounded transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
-                          title="Hapus item"
-                        >
-                          <Trash2 size={16} />
-                        </button>
-                      </td>
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="bg-gray-50 border-b border-gray-200">
+                      <th className="px-3 py-3 text-left font-semibold text-gray-700">Deskripsi</th>
+                      <th className="px-3 py-3 text-center font-semibold text-gray-700 w-20">Qty</th>
+                      <th className="px-3 py-3 text-right font-semibold text-gray-700 w-32">Harga</th>
+                      <th className="px-3 py-3 text-right font-semibold text-gray-700 w-32">Total</th>
+                      <th className="px-3 py-3 w-10"></th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+                  </thead>
+                  <tbody>
+                    {invoiceItems.map((item) => (
+                      <tr key={item.id} className="border-b border-gray-100 hover:bg-gray-50 transition-colors">
+                        <td className="px-3 py-3">
+                          <SearchableItemInput
+                            value={item.description}
+                            options={items}
+                            onSelect={(description, price, itemId) => {
+                              handleItemChange(item.id, 'description', description);
+                              handleItemChange(item.id, 'unit_price', price);
+                              if (itemId) handleItemChange(item.id, 'itemId', itemId);
+                            }}
+                            onChange={(text) => {
+                              handleItemChange(item.id, 'description', text);
+                            }}
+                            pageSize={8}
+                          />
+                        </td>
+                        <td className="px-3 py-3">
+                          <input
+                            type="number"
+                            min="1"
+                            value={item.quantity}
+                            onChange={(e) =>
+                              handleItemChange(item.id, 'quantity', parseInt(e.target.value) || 1)
+                            }
+                            className="w-full px-2.5 py-1.5 border border-gray-300 rounded text-sm text-center bg-white focus:outline-none focus:ring-1 focus:ring-primary-500"
+                          />
+                        </td>
+                        <td className="px-3 py-3">
+                          <input
+                            type="number"
+                            min="0"
+                            step="0.01"
+                            value={item.unit_price}
+                            onChange={(e) =>
+                              handleItemChange(item.id, 'unit_price', parseFloat(e.target.value) || 0)
+                            }
+                            className="w-full px-2.5 py-1.5 border border-gray-300 rounded text-sm text-right bg-white focus:outline-none focus:ring-1 focus:ring-primary-500"
+                          />
+                        </td>
+                        <td className="px-3 py-3 text-right font-semibold text-gray-900">
+                          {formatCurrency(item.quantity * item.unit_price)}
+                        </td>
+                        <td className="px-3 py-3 text-center">
+                          <button
+                            type="button"
+                            onClick={() => handleRemoveItem(item.id)}
+                            disabled={invoiceItems.length === 1}
+                            className="text-danger hover:bg-red-50 p-1.5 rounded transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+                            title="Hapus item"
+                          >
+                            <Trash2 size={16} />
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
           </CardContent>
         </Card>

@@ -132,8 +132,8 @@ export default function InvoiceDetailPage({ params }: { params: Promise<{ id: st
                 <tr key={item.id} className="border-b last:border-0">
                   <td className="py-3">{item.description}</td>
                   <td className="py-3 text-right">{item.quantity}</td>
-                  <td className="py-3 text-right">{formatCurrency(item.unitPrice)}</td>
-                  <td className="py-3 text-right font-medium">{formatCurrency(item.totalPrice)}</td>
+                  <td className="py-3 text-right">{formatCurrency(item.unit_price)}</td>
+                  <td className="py-3 text-right font-medium">{formatCurrency(item.total_price)}</td>
                 </tr>
               ))}
             </tbody>
