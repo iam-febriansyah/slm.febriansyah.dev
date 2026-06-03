@@ -207,7 +207,7 @@ server {
     server_name yourdomain.com;
 
     location / {
-        proxy_pass http://localhost:3000;
+        proxy_pass http://localhost:3003;
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection 'upgrade';
@@ -216,7 +216,7 @@ server {
     }
 
     location /api {
-        proxy_pass http://localhost:4000;
+        proxy_pass http://localhost:3004;
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection 'upgrade';
@@ -237,8 +237,8 @@ Setiap container memiliki health check built-in:
 docker-compose ps
 
 # Manual health check
-curl http://localhost:4000/api/v1/health  # Backend
-curl http://localhost:3000                 # Frontend
+curl http://localhost:3004/api/v1/health  # Backend
+curl http://localhost:3003                 # Frontend
 ```
 
 ### Database Backup

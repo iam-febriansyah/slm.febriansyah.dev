@@ -79,8 +79,8 @@ In your first terminal:
 cd backend
 npm run dev
 ```
-- The API will be available at: `http://localhost:4000/api/v1`
-- Swagger API Documentation: `http://localhost:4000/api/docs`
+- The API will be available at: `http://localhost:3004/api/v1`
+- Swagger API Documentation: `http://localhost:3004/api/docs`
 
 ### 2. Start the Frontend Application
 In your second terminal:
@@ -88,10 +88,10 @@ In your second terminal:
 cd frontend
 npm run dev
 ```
-- The Web App will be available at: `http://localhost:3000`
+- The Web App will be available at: `http://localhost:3003`
 
 ### 3. Login
-Navigate to `http://localhost:3000` and log in using the seeded test accounts:
+Navigate to `http://localhost:3003` and log in using the seeded test accounts:
 - **Admin**: `admin@example.com` / `admin123`
 - **User**: `user@example.com` / `user123`
 
