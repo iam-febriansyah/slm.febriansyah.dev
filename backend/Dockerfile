@@ -36,4 +36,4 @@ COPY prisma ./prisma
 EXPOSE 3004
 
 # Start application
-CMD ["sh", "-c", "npx prisma migrate deploy && node dist/main.js"]
+CMD ["sh", "-c", "npx prisma generate && node dist/main.js"]

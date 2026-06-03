@@ -16,8 +16,12 @@ async function bootstrap() {
   );
 
   // Enable CORS
+  const allowedOrigins = process.env.FRONTEND_URL
+    ? process.env.FRONTEND_URL.split(',').map(url => url.trim())
+    : ['http://localhost:3003'];
+
   app.enableCors({
-    origin: process.env.FRONTEND_URL || 'http://localhost:3003',
+    origin: allowedOrigins,
     credentials: true,
   });
 
