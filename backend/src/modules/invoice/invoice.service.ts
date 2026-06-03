@@ -121,11 +121,11 @@ export class InvoiceService {
     }
 
     // Get total count
-    const countResult = await this.prisma.$queryRawUnsafe<Array<{ count: number }>>(
+    const countResult = await this.prisma.$queryRawUnsafe<Array<{ count: bigint }>>(
       `SELECT COUNT(*) as count FROM invoices i WHERE ${whereConditions}`,
       ...params,
     );
-    const total = countResult[0].count;
+    const total = Number(countResult[0].count);
 
     // Get paginated data with JOIN
     const data = await this.prisma.$queryRawUnsafe<any[]>(
