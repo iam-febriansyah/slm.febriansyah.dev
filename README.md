@@ -110,3 +110,7 @@ Navigate to `http://localhost:3003` and log in using the seeded test accounts:
 2. **Tax and Discounts**: It is assumed that tax is applied *after* discounts are calculated from the subtotal. Both are stored as percentages but calculated into exact amounts for historical immutability.
 3. **Item Catalog Independence**: When an item is added to an invoice, its name and current price are copied into the `InvoiceItem` table. This assumes that if a master catalog item's price changes later, historical invoices should not be affected.
 4. **Security**: Access tokens are kept short-lived (15m), while refresh tokens are long-lived (7d), representing a standard security posture for business applications.
+
+### Deployed On
+`https://sml.febriansyah.dev`
+`https://sml-api.febriansyah.dev/api/docs`
