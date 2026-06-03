@@ -112,5 +112,5 @@ Navigate to `http://localhost:3003` and log in using the seeded test accounts:
 4. **Security**: Access tokens are kept short-lived (15m), while refresh tokens are long-lived (7d), representing a standard security posture for business applications.
 
 ### Deployed On
-`https://sml.febriansyah.dev`
-`https://sml-api.febriansyah.dev/api/docs`
+- Frontend at: `https://sml.febriansyah.dev`
+- Swagger API Documentation / Backend: `https://sml-api.febriansyah.dev/api/docs`
