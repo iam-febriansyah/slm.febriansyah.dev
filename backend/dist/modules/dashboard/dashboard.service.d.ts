@@ -13,19 +13,16 @@ export declare class DashboardService {
             cancelledCount: number;
             recentInvoices: ({
                 items: {
-                    description: string;
                     id: string;
-                    unitPrice: import("@prisma/client/runtime/library").Decimal;
+                    description: string;
                     quantity: number;
-                    itemId: string | null;
+                    unitPrice: import("@prisma/client/runtime/library").Decimal;
                     totalPrice: import("@prisma/client/runtime/library").Decimal;
                     invoiceId: string;
+                    itemId: string | null;
                 }[];
             } & {
                 id: string;
-                createdAt: Date;
-                updatedAt: Date;
-                deletedAt: Date | null;
                 invoiceNumber: string;
                 status: import(".prisma/client").$Enums.InvoiceStatus;
                 issueDate: Date;
@@ -37,6 +34,9 @@ export declare class DashboardService {
                 taxAmount: import("@prisma/client/runtime/library").Decimal;
                 totalAmount: import("@prisma/client/runtime/library").Decimal;
                 notes: string | null;
+                createdAt: Date;
+                updatedAt: Date;
+                deletedAt: Date | null;
                 customerId: string;
                 userId: string;
             })[];

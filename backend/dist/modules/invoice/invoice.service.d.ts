@@ -11,29 +11,26 @@ export declare class InvoiceService {
         success: boolean;
         data: {
             customer: {
-                name: string;
-                email: string | null;
                 id: string;
                 createdAt: Date;
                 updatedAt: Date;
                 deletedAt: Date | null;
+                name: string;
+                email: string | null;
                 phone: string | null;
                 address: string | null;
             };
             items: {
-                description: string;
                 id: string;
-                unitPrice: Prisma.Decimal;
+                description: string;
                 quantity: number;
-                itemId: string | null;
+                unitPrice: Prisma.Decimal;
                 totalPrice: Prisma.Decimal;
+                itemId: string | null;
                 invoiceId: string;
             }[];
         } & {
             id: string;
-            createdAt: Date;
-            updatedAt: Date;
-            deletedAt: Date | null;
             invoiceNumber: string;
             status: import(".prisma/client").$Enums.InvoiceStatus;
             issueDate: Date;
@@ -45,6 +42,9 @@ export declare class InvoiceService {
             taxAmount: Prisma.Decimal;
             totalAmount: Prisma.Decimal;
             notes: string | null;
+            createdAt: Date;
+            updatedAt: Date;
+            deletedAt: Date | null;
             customerId: string;
             userId: string;
         };
@@ -55,29 +55,26 @@ export declare class InvoiceService {
         data: {
             items: ({
                 customer: {
-                    name: string;
-                    email: string | null;
                     id: string;
                     createdAt: Date;
                     updatedAt: Date;
                     deletedAt: Date | null;
+                    name: string;
+                    email: string | null;
                     phone: string | null;
                     address: string | null;
                 };
                 items: {
-                    description: string;
                     id: string;
-                    unitPrice: Prisma.Decimal;
+                    description: string;
                     quantity: number;
-                    itemId: string | null;
+                    unitPrice: Prisma.Decimal;
                     totalPrice: Prisma.Decimal;
+                    itemId: string | null;
                     invoiceId: string;
                 }[];
             } & {
                 id: string;
-                createdAt: Date;
-                updatedAt: Date;
-                deletedAt: Date | null;
                 invoiceNumber: string;
                 status: import(".prisma/client").$Enums.InvoiceStatus;
                 issueDate: Date;
@@ -89,6 +86,9 @@ export declare class InvoiceService {
                 taxAmount: Prisma.Decimal;
                 totalAmount: Prisma.Decimal;
                 notes: string | null;
+                createdAt: Date;
+                updatedAt: Date;
+                deletedAt: Date | null;
                 customerId: string;
                 userId: string;
             })[];
@@ -103,40 +103,37 @@ export declare class InvoiceService {
     findOne(id: string): Promise<{
         success: boolean;
         data: {
-            user: {
-                name: string;
-                email: string;
-                password: string;
+            customer: {
                 id: string;
-                role: import(".prisma/client").$Enums.Role;
                 createdAt: Date;
                 updatedAt: Date;
                 deletedAt: Date | null;
-            };
-            customer: {
                 name: string;
                 email: string | null;
-                id: string;
-                createdAt: Date;
-                updatedAt: Date;
-                deletedAt: Date | null;
                 phone: string | null;
                 address: string | null;
             };
-            items: {
-                description: string;
+            user: {
                 id: string;
-                unitPrice: Prisma.Decimal;
+                createdAt: Date;
+                updatedAt: Date;
+                deletedAt: Date | null;
+                name: string;
+                email: string;
+                password: string;
+                role: import(".prisma/client").$Enums.Role;
+            };
+            items: {
+                id: string;
+                description: string;
                 quantity: number;
-                itemId: string | null;
+                unitPrice: Prisma.Decimal;
                 totalPrice: Prisma.Decimal;
+                itemId: string | null;
                 invoiceId: string;
             }[];
         } & {
             id: string;
-            createdAt: Date;
-            updatedAt: Date;
-            deletedAt: Date | null;
             invoiceNumber: string;
             status: import(".prisma/client").$Enums.InvoiceStatus;
             issueDate: Date;
@@ -148,6 +145,9 @@ export declare class InvoiceService {
             taxAmount: Prisma.Decimal;
             totalAmount: Prisma.Decimal;
             notes: string | null;
+            createdAt: Date;
+            updatedAt: Date;
+            deletedAt: Date | null;
             customerId: string;
             userId: string;
         };
@@ -156,29 +156,26 @@ export declare class InvoiceService {
         success: boolean;
         data: {
             customer: {
-                name: string;
-                email: string | null;
                 id: string;
                 createdAt: Date;
                 updatedAt: Date;
                 deletedAt: Date | null;
+                name: string;
+                email: string | null;
                 phone: string | null;
                 address: string | null;
             };
             items: {
-                description: string;
                 id: string;
-                unitPrice: Prisma.Decimal;
+                description: string;
                 quantity: number;
-                itemId: string | null;
+                unitPrice: Prisma.Decimal;
                 totalPrice: Prisma.Decimal;
+                itemId: string | null;
                 invoiceId: string;
             }[];
         } & {
             id: string;
-            createdAt: Date;
-            updatedAt: Date;
-            deletedAt: Date | null;
             invoiceNumber: string;
             status: import(".prisma/client").$Enums.InvoiceStatus;
             issueDate: Date;
@@ -190,6 +187,9 @@ export declare class InvoiceService {
             taxAmount: Prisma.Decimal;
             totalAmount: Prisma.Decimal;
             notes: string | null;
+            createdAt: Date;
+            updatedAt: Date;
+            deletedAt: Date | null;
             customerId: string;
             userId: string;
         };
@@ -199,29 +199,26 @@ export declare class InvoiceService {
         success: boolean;
         data: {
             customer: {
-                name: string;
-                email: string | null;
                 id: string;
                 createdAt: Date;
                 updatedAt: Date;
                 deletedAt: Date | null;
+                name: string;
+                email: string | null;
                 phone: string | null;
                 address: string | null;
             };
             items: {
-                description: string;
                 id: string;
-                unitPrice: Prisma.Decimal;
+                description: string;
                 quantity: number;
-                itemId: string | null;
+                unitPrice: Prisma.Decimal;
                 totalPrice: Prisma.Decimal;
+                itemId: string | null;
                 invoiceId: string;
             }[];
         } & {
             id: string;
-            createdAt: Date;
-            updatedAt: Date;
-            deletedAt: Date | null;
             invoiceNumber: string;
             status: import(".prisma/client").$Enums.InvoiceStatus;
             issueDate: Date;
@@ -233,6 +230,9 @@ export declare class InvoiceService {
             taxAmount: Prisma.Decimal;
             totalAmount: Prisma.Decimal;
             notes: string | null;
+            createdAt: Date;
+            updatedAt: Date;
+            deletedAt: Date | null;
             customerId: string;
             userId: string;
         };
@@ -242,29 +242,26 @@ export declare class InvoiceService {
         success: boolean;
         data: {
             customer: {
-                name: string;
-                email: string | null;
                 id: string;
                 createdAt: Date;
                 updatedAt: Date;
                 deletedAt: Date | null;
+                name: string;
+                email: string | null;
                 phone: string | null;
                 address: string | null;
             };
             items: {
-                description: string;
                 id: string;
-                unitPrice: Prisma.Decimal;
+                description: string;
                 quantity: number;
-                itemId: string | null;
+                unitPrice: Prisma.Decimal;
                 totalPrice: Prisma.Decimal;
+                itemId: string | null;
                 invoiceId: string;
             }[];
         } & {
             id: string;
-            createdAt: Date;
-            updatedAt: Date;
-            deletedAt: Date | null;
             invoiceNumber: string;
             status: import(".prisma/client").$Enums.InvoiceStatus;
             issueDate: Date;
@@ -276,6 +273,9 @@ export declare class InvoiceService {
             taxAmount: Prisma.Decimal;
             totalAmount: Prisma.Decimal;
             notes: string | null;
+            createdAt: Date;
+            updatedAt: Date;
+            deletedAt: Date | null;
             customerId: string;
             userId: string;
         };
@@ -285,29 +285,26 @@ export declare class InvoiceService {
         success: boolean;
         data: {
             customer: {
-                name: string;
-                email: string | null;
                 id: string;
                 createdAt: Date;
                 updatedAt: Date;
                 deletedAt: Date | null;
+                name: string;
+                email: string | null;
                 phone: string | null;
                 address: string | null;
             };
             items: {
-                description: string;
                 id: string;
-                unitPrice: Prisma.Decimal;
+                description: string;
                 quantity: number;
-                itemId: string | null;
+                unitPrice: Prisma.Decimal;
                 totalPrice: Prisma.Decimal;
+                itemId: string | null;
                 invoiceId: string;
             }[];
         } & {
             id: string;
-            createdAt: Date;
-            updatedAt: Date;
-            deletedAt: Date | null;
             invoiceNumber: string;
             status: import(".prisma/client").$Enums.InvoiceStatus;
             issueDate: Date;
@@ -319,6 +316,9 @@ export declare class InvoiceService {
             taxAmount: Prisma.Decimal;
             totalAmount: Prisma.Decimal;
             notes: string | null;
+            createdAt: Date;
+            updatedAt: Date;
+            deletedAt: Date | null;
             customerId: string;
             userId: string;
         };

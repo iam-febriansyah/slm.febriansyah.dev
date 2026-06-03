@@ -1,4 +1,4 @@
-import { IsString, IsNotEmpty, IsNumber, IsOptional, IsEnum, IsArray, Min, ValidateNested } from 'class-validator';
+import { IsString, IsNotEmpty, IsNumber, IsOptional, IsEnum, IsArray, Min, ValidateNested, IsDateString } from 'class-validator';
 import { Type } from 'class-transformer';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { InvoiceStatus } from '@prisma/client';
@@ -34,6 +34,8 @@ export class CreateInvoiceDto {
   customerId: string;
 
   @ApiProperty()
+  @IsDateString()
+  @IsNotEmpty()
   dueDate: Date;
 
   @ApiPropertyOptional({ example: 10 })
@@ -64,6 +66,7 @@ export class CreateInvoiceDto {
 
 export class UpdateInvoiceDto {
   @ApiPropertyOptional()
+  @IsDateString()
   @IsOptional()
   dueDate?: Date;
 

@@ -6,12 +6,12 @@ export declare class CustomerService {
     create(dto: CreateCustomerDto): Promise<{
         success: boolean;
         data: {
-            name: string;
-            email: string | null;
             id: string;
             createdAt: Date;
             updatedAt: Date;
             deletedAt: Date | null;
+            name: string;
+            email: string | null;
             phone: string | null;
             address: string | null;
         };
@@ -21,12 +21,12 @@ export declare class CustomerService {
         success: boolean;
         data: {
             items: {
-                name: string;
-                email: string | null;
                 id: string;
                 createdAt: Date;
                 updatedAt: Date;
                 deletedAt: Date | null;
+                name: string;
+                email: string | null;
                 phone: string | null;
                 address: string | null;
             }[];
@@ -41,12 +41,12 @@ export declare class CustomerService {
     findOne(id: string): Promise<{
         success: boolean;
         data: {
-            name: string;
-            email: string | null;
             id: string;
             createdAt: Date;
             updatedAt: Date;
             deletedAt: Date | null;
+            name: string;
+            email: string | null;
             phone: string | null;
             address: string | null;
         };
@@ -54,12 +54,12 @@ export declare class CustomerService {
     update(id: string, dto: UpdateCustomerDto): Promise<{
         success: boolean;
         data: {
-            name: string;
-            email: string | null;
             id: string;
             createdAt: Date;
             updatedAt: Date;
             deletedAt: Date | null;
+            name: string;
+            email: string | null;
             phone: string | null;
             address: string | null;
         };

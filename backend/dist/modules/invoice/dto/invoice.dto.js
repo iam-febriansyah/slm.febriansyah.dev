@@ -54,6 +54,8 @@ __decorate([
 ], CreateInvoiceDto.prototype, "customerId", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)(),
+    (0, class_validator_1.IsDateString)(),
+    (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", Date)
 ], CreateInvoiceDto.prototype, "dueDate", void 0);
 __decorate([
@@ -90,6 +92,7 @@ class UpdateInvoiceDto {
 exports.UpdateInvoiceDto = UpdateInvoiceDto;
 __decorate([
     (0, swagger_1.ApiPropertyOptional)(),
+    (0, class_validator_1.IsDateString)(),
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", Date)
 ], UpdateInvoiceDto.prototype, "dueDate", void 0);

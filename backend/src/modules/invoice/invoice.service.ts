@@ -9,7 +9,7 @@ export class InvoiceService {
   constructor(
     private prisma: PrismaService,
     private invoiceNumberService: InvoiceNumberService,
-  ) {}
+  ) { }
 
   private recalculateInvoice(
     items: { quantity: number; unitPrice: any }[],

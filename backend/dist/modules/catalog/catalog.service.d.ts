@@ -8,15 +8,15 @@ export declare class CatalogService {
         success: boolean;
         data: {
             id: string;
+            createdAt: Date;
+            updatedAt: Date;
+            deletedAt: Date | null;
             name: string;
             description: string | null;
             unitPrice: Prisma.Decimal;
             unit: string | null;
             sku: string | null;
             isActive: boolean;
-            createdAt: Date;
-            updatedAt: Date;
-            deletedAt: Date | null;
         };
         message: string;
     }>;
@@ -25,15 +25,15 @@ export declare class CatalogService {
         data: {
             items: {
                 id: string;
+                createdAt: Date;
+                updatedAt: Date;
+                deletedAt: Date | null;
                 name: string;
                 description: string | null;
                 unitPrice: Prisma.Decimal;
                 unit: string | null;
                 sku: string | null;
                 isActive: boolean;
-                createdAt: Date;
-                updatedAt: Date;
-                deletedAt: Date | null;
             }[];
             meta: {
                 total: number;
@@ -47,30 +47,30 @@ export declare class CatalogService {
         success: boolean;
         data: {
             id: string;
+            createdAt: Date;
+            updatedAt: Date;
+            deletedAt: Date | null;
             name: string;
             description: string | null;
             unitPrice: Prisma.Decimal;
             unit: string | null;
             sku: string | null;
             isActive: boolean;
-            createdAt: Date;
-            updatedAt: Date;
-            deletedAt: Date | null;
         };
     }>;
     update(id: string, dto: UpdateItemDto): Promise<{
         success: boolean;
         data: {
             id: string;
+            createdAt: Date;
+            updatedAt: Date;
+            deletedAt: Date | null;
             name: string;
             description: string | null;
             unitPrice: Prisma.Decimal;
             unit: string | null;
             sku: string | null;
             isActive: boolean;
-            createdAt: Date;
-            updatedAt: Date;
-            deletedAt: Date | null;
         };
         message: string;
     }>;

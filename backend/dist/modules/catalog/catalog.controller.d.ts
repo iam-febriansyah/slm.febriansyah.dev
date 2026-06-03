@@ -7,15 +7,15 @@ export declare class CatalogController {
         success: boolean;
         data: {
             id: string;
+            createdAt: Date;
+            updatedAt: Date;
+            deletedAt: Date | null;
             name: string;
             description: string | null;
             unitPrice: import("@prisma/client/runtime/library").Decimal;
             unit: string | null;
             sku: string | null;
             isActive: boolean;
-            createdAt: Date;
-            updatedAt: Date;
-            deletedAt: Date | null;
         };
         message: string;
     }>;
@@ -24,15 +24,15 @@ export declare class CatalogController {
         data: {
             items: {
                 id: string;
+                createdAt: Date;
+                updatedAt: Date;
+                deletedAt: Date | null;
                 name: string;
                 description: string | null;
                 unitPrice: import("@prisma/client/runtime/library").Decimal;
                 unit: string | null;
                 sku: string | null;
                 isActive: boolean;
-                createdAt: Date;
-                updatedAt: Date;
-                deletedAt: Date | null;
             }[];
             meta: {
                 total: number;
@@ -46,30 +46,30 @@ export declare class CatalogController {
         success: boolean;
         data: {
             id: string;
+            createdAt: Date;
+            updatedAt: Date;
+            deletedAt: Date | null;
             name: string;
             description: string | null;
             unitPrice: import("@prisma/client/runtime/library").Decimal;
             unit: string | null;
             sku: string | null;
             isActive: boolean;
-            createdAt: Date;
-            updatedAt: Date;
-            deletedAt: Date | null;
         };
     }>;
     update(id: string, dto: UpdateItemDto): Promise<{
         success: boolean;
         data: {
             id: string;
+            createdAt: Date;
+            updatedAt: Date;
+            deletedAt: Date | null;
             name: string;
             description: string | null;
             unitPrice: import("@prisma/client/runtime/library").Decimal;
             unit: string | null;
             sku: string | null;
             isActive: boolean;
-            createdAt: Date;
-            updatedAt: Date;
-            deletedAt: Date | null;
         };
         message: string;
     }>;
