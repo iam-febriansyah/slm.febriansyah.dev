@@ -11,8 +11,11 @@ async function bootstrap() {
         forbidNonWhitelisted: true,
         transform: true,
     }));
+    const allowedOrigins = process.env.FRONTEND_URL
+        ? process.env.FRONTEND_URL.split(',').map(url => url.trim())
+        : ['http://localhost:3003'];
     app.enableCors({
-        origin: process.env.FRONTEND_URL || 'http://localhost:3003',
+        origin: allowedOrigins,
         credentials: true,
     });
     app.setGlobalPrefix('api/v1');
@@ -32,11 +35,9 @@ async function bootstrap() {
         swaggerOptions: { persistAuthorization: true },
     });
     const port = process.env.API_PORT || 3004;
-    const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:3003'
     await app.listen(port);
     console.log(`✅ API running on http://localhost:${port}`);
     console.log(`📚 Swagger docs: http://localhost:${port}/api/docs`);
-    console.log(`FRONTEND_URL: ${FRONTEND_URL}`);
 }
 bootstrap().catch((err) => {
     console.error('❌ Failed to start API:', err);
