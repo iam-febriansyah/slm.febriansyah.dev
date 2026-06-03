@@ -23,7 +23,6 @@ RUN npm install --omit=dev --legacy-peer-deps && \
   npm cache clean --force
 
 COPY --from=builder /app/.next ./.next
-COPY --from=builder /app/public ./public
 
 EXPOSE 3003
 
