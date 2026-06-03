@@ -1,12 +1,12 @@
-# Build stage
-FROM node:18-alpine AS builder
+# Build stage - use slim image for better compatibility with native modules
+FROM node:18-slim AS builder
 WORKDIR /app
-
-# Install build tools for native dependencies (Tailwind CSS oxide)
-RUN apk add --no-cache python3 make g++
 
 COPY package*.json ./
 RUN npm ci --legacy-peer-deps
+
+COPY . .
+RUN npm run build
 
 COPY . .
 RUN npm run build
