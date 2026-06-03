@@ -87,11 +87,11 @@ export default function DashboardPage() {
               {data.recentInvoices.slice(0, 5).map((invoice: any) => (
                 <div key={invoice.id} className="flex items-center justify-between border-b pb-4 last:border-0">
                   <div>
-                    <p className="font-medium">{invoice.invoiceNumber}</p>
-                    <p className="text-sm text-gray-500">{formatDate(invoice.issueDate)}</p>
+                    <p className="font-medium">{invoice.invoice_number}</p>
+                    <p className="text-sm text-gray-500">{formatDate(invoice.issue_date)}</p>
                   </div>
                   <div className="flex items-center gap-4">
-                    <p className="font-semibold">{formatCurrency(invoice.totalAmount)}</p>
+                    <p className="font-semibold">{formatCurrency(invoice.total_amount)}</p>
                     <Badge
                       variant={
                         invoice.status === 'PAID'

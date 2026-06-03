@@ -93,11 +93,11 @@ export default function InvoicesPage() {
                 <tbody>
                   {invoices.map((inv) => (
                     <tr key={inv.id} className="border-b last:border-0 hover:bg-gray-50">
-                      <td className="py-3 font-medium text-primary-600">{inv.invoiceNumber}</td>
+                      <td className="py-3 font-medium text-primary-600">{inv.invoice_number}</td>
                       <td className="py-3">{inv.customer?.name || '-'}</td>
-                      <td className="py-3 text-gray-600">{formatDate(inv.issueDate, 'short')}</td>
-                      <td className="py-3 text-gray-600">{formatDate(inv.dueDate, 'short')}</td>
-                      <td className="py-3 font-semibold">{formatCurrency(inv.totalAmount)}</td>
+                      <td className="py-3 text-gray-600">{formatDate(inv.issue_date, 'short')}</td>
+                      <td className="py-3 text-gray-600">{formatDate(inv.due_date, 'short')}</td>
+                      <td className="py-3 font-semibold">{formatCurrency(inv.total_amount)}</td>
                       <td className="py-3">{getStatusBadge(inv.status)}</td>
                       <td className="py-3 text-right">
                         <div className="flex justify-end gap-2">
@@ -111,7 +111,7 @@ export default function InvoicesPage() {
                               size="sm"
                               variant="ghost"
                               className="text-danger hover:bg-red-50"
-                              onClick={() => handleDelete(inv.id, inv.invoiceNumber, inv.status)}
+                              onClick={() => handleDelete(inv.id, inv.invoice_number, inv.status)}
                             >
                               <Trash2 size={14} />
                             </Button>

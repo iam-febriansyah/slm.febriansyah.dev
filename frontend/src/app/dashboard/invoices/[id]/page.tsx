@@ -77,7 +77,7 @@ export default function InvoiceDetailPage({ params }: { params: Promise<{ id: st
             <ArrowLeft size={18} /> Kembali
           </Button>
           <div>
-            <h1 className="text-2xl font-bold text-gray-900">{invoice.invoiceNumber}</h1>
+            <h1 className="text-2xl font-bold text-gray-900">{invoice.invoice_number}</h1>
             <Badge variant={STATUS_BADGE[invoice.status]}>{STATUS_LABELS[invoice.status]}</Badge>
           </div>
         </div>
@@ -97,8 +97,8 @@ export default function InvoiceDetailPage({ params }: { params: Promise<{ id: st
         <Card>
           <CardHeader><CardTitle>Informasi Invoice</CardTitle></CardHeader>
           <CardContent className="space-y-3 text-sm">
-            <div className="flex justify-between"><span className="text-gray-500">Tanggal</span><span>{formatDate(invoice.issueDate)}</span></div>
-            <div className="flex justify-between"><span className="text-gray-500">Jatuh Tempo</span><span>{formatDate(invoice.dueDate)}</span></div>
+            <div className="flex justify-between"><span className="text-gray-500">Tanggal</span><span>{formatDate(invoice.issue_date)}</span></div>
+            <div className="flex justify-between"><span className="text-gray-500">Jatuh Tempo</span><span>{formatDate(invoice.due_date)}</span></div>
             <div className="flex justify-between"><span className="text-gray-500">Dibuat oleh</span><span>{invoice.user?.name || '-'}</span></div>
             {invoice.notes && <div><span className="text-gray-500">Catatan:</span><p className="mt-1 text-gray-800">{invoice.notes}</p></div>}
           </CardContent>
@@ -140,13 +140,13 @@ export default function InvoiceDetailPage({ params }: { params: Promise<{ id: st
           </table>
           <div className="mt-4 space-y-2 text-sm border-t pt-4">
             <div className="flex justify-between"><span className="text-gray-500">Subtotal</span><span>{formatCurrency(invoice.subtotal)}</span></div>
-            {Number(invoice.discountPercent) > 0 && (
-              <div className="flex justify-between text-red-600"><span>Diskon ({invoice.discountPercent}%)</span><span>- {formatCurrency(invoice.discountAmount)}</span></div>
+            {Number(invoice.discount_percent) > 0 && (
+              <div className="flex justify-between text-red-600"><span>Diskon ({invoice.discount_percent}%)</span><span>- {formatCurrency(invoice.discount_amount)}</span></div>
             )}
-            {Number(invoice.taxPercent) > 0 && (
-              <div className="flex justify-between"><span className="text-gray-500">Pajak ({invoice.taxPercent}%)</span><span>{formatCurrency(invoice.taxAmount)}</span></div>
+            {Number(invoice.tax_percent) > 0 && (
+              <div className="flex justify-between"><span className="text-gray-500">Pajak ({invoice.tax_percent}%)</span><span>{formatCurrency(invoice.tax_amount)}</span></div>
             )}
-            <div className="flex justify-between text-base font-bold border-t pt-2"><span>TOTAL</span><span>{formatCurrency(invoice.totalAmount)}</span></div>
+            <div className="flex justify-between text-base font-bold border-t pt-2"><span>TOTAL</span><span>{formatCurrency(invoice.total_amount)}</span></div>
           </div>
         </CardContent>
       </Card>
