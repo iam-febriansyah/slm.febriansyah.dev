@@ -6,7 +6,7 @@ import { Button } from '@/shared/components/ui/button';
 import { Card, CardContent } from '@/shared/components/ui/card';
 import { formatCurrency, formatDate } from '@/shared/lib/format';
 import { Badge } from '@/shared/components/ui/badge';
-import { Plus, Eye, Trash2 } from 'lucide-react';
+import { Plus, Eye, Trash2, Edit } from 'lucide-react';
 import Link from 'next/link';
 import toast from 'react-hot-toast';
 
@@ -93,7 +93,7 @@ export default function InvoicesPage() {
                 <tbody>
                   {invoices.map((inv) => (
                     <tr key={inv.id} className="border-b last:border-0 hover:bg-gray-50">
-                      <td className="py-3 font-medium text-primary-600">{inv.invoice_number}</td>
+                      <td className="py-3 font-medium text-primary-600"><a href={`/dashboard/invoices/${inv.id}`}>{inv.invoice_number}</a></td>
                       <td className="py-3">{inv.customer?.name || '-'}</td>
                       <td className="py-3 text-gray-600">{formatDate(inv.issue_date, 'short')}</td>
                       <td className="py-3 text-gray-600">{formatDate(inv.due_date, 'short')}</td>
@@ -101,19 +101,42 @@ export default function InvoicesPage() {
                       <td className="py-3">{getStatusBadge(inv.status)}</td>
                       <td className="py-3 text-right">
                         <div className="flex justify-end gap-2">
-                          <Button size="sm" variant="ghost" asChild>
-                            <a href={`/dashboard/invoices/${inv.id}`}>
-                              <Eye size={14} />
+                          {/* View Button */}
+                          <Button
+                            size="sm"
+                            variant="ghost"
+                            className="cursor-pointer hover:bg-blue-50 hover:text-blue-600 transition-colors"
+                            asChild
+                          >
+                            <a href={`/dashboard/invoices/${inv.id}`} title="Lihat Detail">
+                              <Eye size={16} />
                             </a>
                           </Button>
+
+                          {/* Edit Button - only for DRAFT */}
                           {inv.status === 'DRAFT' && (
                             <Button
                               size="sm"
                               variant="ghost"
-                              className="text-danger hover:bg-red-50"
-                              onClick={() => handleDelete(inv.id, inv.invoice_number, inv.status)}
+                              className="cursor-pointer hover:bg-amber-50 hover:text-amber-600 transition-colors"
+                              asChild
                             >
-                              <Trash2 size={14} />
+                              <a href={`/dashboard/invoices/${inv.id}/edit`} title="Edit Invoice">
+                                <Edit size={16} />
+                              </a>
+                            </Button>
+                          )}
+
+                          {/* Delete Button - only for DRAFT */}
+                          {inv.status === 'DRAFT' && (
+                            <Button
+                              size="sm"
+                              variant="ghost"
+                              className="cursor-pointer hover:bg-red-50 hover:text-red-600 transition-colors"
+                              onClick={() => handleDelete(inv.id, inv.invoice_number, inv.status)}
+                              title="Hapus Invoice"
+                            >
+                              <Trash2 size={16} />
                             </Button>
                           )}
                         </div>
