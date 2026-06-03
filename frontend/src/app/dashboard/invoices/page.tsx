@@ -6,7 +6,7 @@ import { Button } from '@/shared/components/ui/button';
 import { Card, CardContent } from '@/shared/components/ui/card';
 import { formatCurrency, formatDate } from '@/shared/lib/format';
 import { Badge } from '@/shared/components/ui/badge';
-import { Plus, Eye, Trash2, Edit } from 'lucide-react';
+import { Plus, Eye, Trash2 } from 'lucide-react';
 import Link from 'next/link';
 import toast from 'react-hot-toast';
 
