@@ -115,12 +115,6 @@ export default function CreateInvoicePage() {
     );
   };
 
-  const handleSelectCatalogItem = (id: string, catalogItem: CatalogItem) => {
-    handleItemChange(id, 'description', catalogItem.name);
-    handleItemChange(id, 'unitPrice', catalogItem.price);
-    handleItemChange(id, 'itemId', catalogItem.id);
-  };
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -274,7 +268,7 @@ export default function CreateInvoicePage() {
                   </tr>
                 </thead>
                 <tbody>
-                  {invoiceItems.map((item, idx) => (
+                  {invoiceItems.map((item) => (
                     <tr key={item.id} className="border-b border-gray-100 hover:bg-gray-50 transition-colors">
                       <td className="px-3 py-3">
                         <SearchableItemInput

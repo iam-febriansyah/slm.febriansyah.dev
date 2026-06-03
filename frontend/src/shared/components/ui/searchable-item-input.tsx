@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Search, ChevronDown, Loader, X } from 'lucide-react';
+import { Search, Loader, X } from 'lucide-react';
 import { cn } from '@/shared/lib/cn';
 import { formatCurrency } from '@/shared/lib/format';
 
@@ -29,7 +29,7 @@ export const SearchableItemInput = React.forwardRef<HTMLDivElement, SearchableIt
     isLoading,
     onSearch,
     pageSize = 8,
-  }, ref) => {
+  }, ) => {
     const [isOpen, setIsOpen] = useState(false);
     const [searchTerm, setSearchTerm] = useState(value);
     const [page, setPage] = useState(0);

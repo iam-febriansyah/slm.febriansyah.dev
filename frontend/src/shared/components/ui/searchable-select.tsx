@@ -33,7 +33,7 @@ export const SearchableSelect = React.forwardRef<HTMLDivElement, SearchableSelec
     isLoading,
     onSearch,
     pageSize = 10,
-  }, ref) => {
+  }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [searchTerm, setSearchTerm] = useState('');
     const [page, setPage] = useState(0);
